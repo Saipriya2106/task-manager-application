@@ -1,0 +1,47 @@
+.create-task{
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    /* background-color:   #A1D6E2 ; */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    
+}
+  
+/* .error {
+    color: red;
+    font-size: 0.9em;
+    margin: 20px;
+} */
+
+.error {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.createbtn{
+    margin-top: 30px;
+    padding-left: 250px;
+
+}
+.btn{
+    background-color:#047688; 
+    color: white;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.btn:hover{
+    background-color:  #84cfe0;
+    color: black
+}
+.btn:disabled{
+    background-color:  #84cfe0;
+    color: black;
+    cursor: not-allowed;
+}

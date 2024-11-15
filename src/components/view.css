@@ -1,0 +1,109 @@
+.viewtask{
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    /* border:solid 1px #1995AD; */
+    /* font-family: Arial, sans-serif; */
+}
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.8); 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999; 
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  
+  .loading-message {
+    margin-top: 20px;
+    color:  #1995AD; 
+    font-size: 18px;
+  }
+
+
+  .task-due-date {
+    /* font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px; */
+    color: #1995ad; 
+}
+
+
+.task-description {
+    color: #555;
+}
+
+.task-due-date {
+    font-weight: 600;
+    color: #1995ad; 
+}
+
+/*
+.task-status {
+    font-weight: 600;
+    color: #f44336;
+}
+*/
+
+.buttons{
+    margin-top: 25px;
+    display: flex;
+    padding-top: 50px;
+    padding-left: 250px;
+    padding-right: 250px;
+    justify-content: space-between;
+    /* width: fit-content; */
+
+}
+
+
+
+
+.button, .delete {
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 2px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button {
+    background-color:#047688; 
+    color: white;
+}
+
+.button:hover {
+    background-color:  #84cfe0;
+    color: black
+}
+
+.delete {
+    background-color: #f44336;
+    color: white;
+}
+
+.delete:hover {
+    background-color: #f07f7f;
+    color: black
+}
+
+.no-tasks-message {
+    text-align: center;
+    font-size: 18px;
+    color: #999;
+    margin-top: 50px;
+}
+
+

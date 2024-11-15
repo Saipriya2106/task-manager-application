@@ -1,0 +1,86 @@
+.topnav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color:  #1995AD;
+    padding: 12px;
+}
+.topnav a{
+    color: #F1F1F2;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 2px;
+}
+.topnav a:hover{
+    background-color: #A1D6E2;
+    color: black;
+}
+.left-container{
+    display: flex;
+    justify-content: space-between;
+    /* padding: 6px 12px; */
+    align-items: center;
+}
+.right-container{
+    float: right;
+    display: flex;
+    justify-content: space-between;
+}
+.search-container {
+    display: flex;
+    padding-left: 1px;
+}
+.search-container input{
+    padding: 6px 12px;
+}
+.dropdown select{
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+.task-list-container1{
+    display: flex;
+    /* border:1px solid ; */
+}
+
+.table1{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+.table1 th{
+    
+    background-color: #A1D6E2 ;
+    text-align: center;
+    text-transform: uppercase;
+}
+.table1 th,.table1 td
+{
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+}
+a.view-button{
+    text-decoration: none;
+    cursor: pointer;
+}
+.table1 tr:hover {
+    background-color: #f1f1f1; 
+    cursor: pointer;
+}
+
+/* .table1 tbody {
+  display: block;
+  max-height: 500px; 
+  overflow-y: auto;   
+  width: 100%;
+  box-sizing: border-box; 
+}
+
+.table1 thead,
+.table1 tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+} */
