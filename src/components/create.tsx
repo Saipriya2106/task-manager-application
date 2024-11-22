@@ -22,19 +22,63 @@ export const Create:React.FC = ()=> {
         status: "Pending"
     });
     
-    const [taskErrors, setTaskErrors] = useState<Partial<Record<keyof TaskDetails, string>>>({
+    const [taskErrors, setTaskErrors] = useState({
         title: "",
         description: "",
         dueDate: "",
     });
+    const validateField = (name: string, value: string) => {
+        let error = "";
+    
+        switch (name) {
+            case "title":
+                if (value.trim() === "") {
+                    error = "Title is required.";
+                } else if (value.length < 5) {
+                    error = "Title must be at least 5 characters.";
+                }
+                break;
+    
+            case "description":
+                if (value.trim() === "") {
+                    error = "Description is required.";
+                } else if (value.length < 10) {
+                    error = "Description must be at least 10 characters.";
+                } else if (value.length > 100) {
+                    error = "Description must be less than 100 characters.";
+                }
+                break;
+    
+            case "dueDate":
+                if (value === "") {
+                    error = "Due Date is required.";
+                } else {
+                    const today = new Date();
+                    const selectedDate = new Date(value);
+                    if (selectedDate < today) {
+                        error = "Due Date must be in the future.";
+                    }
+                }
+                break;
+    
+            default:
+                break;
+        }
+        setTaskErrors((prevState) => ({
+            ...prevState,
+            [name]: error,
+        }));
+    };
+    
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setIsModified(true);
         const { name, value } = e.target;
-        setTaskErrors(prevState => ({
-            ...prevState,
-            [name]: value === "" ? `${name} is required` : "",
-        }));
+        // setTaskErrors(prevState => ({
+        //     ...prevState,
+        //     [name]: value === "" ? `${name} is required` : "",
+        // }));
+        validateField(name,value);
         setTaskDetails(prevState => ({
             ...prevState,
             [name]: value,

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import { useParams} from "react-router-dom";
 import { useContext, useEffect,useState } from "react";
 import { RingLoader } from 'react-spinners';
@@ -16,7 +16,7 @@ export const View: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const idNumber:Number = parseInt(id || '0', 10); 
     const navigate = useNavigate();
-    const {tasks, add} = useContext(TaskContext);
+    const {tasks} = useContext(TaskContext);
     
     const [selectedTask, setSelectedTask] = useState<TaskDetails | null>(null); 
     const [loading,setLoading] = useState<boolean>(true);
@@ -33,22 +33,6 @@ export const View: React.FC = () => {
         }
         
     }, [id]); 
-    const handleDelete = () => {
-        // const tasks: TaskDetails[] = JSON.parse(localStorage.getItem('tasks') || '[]');
-        const remove:boolean = confirm("Are you Sure");
-        if(remove){
-            const updatedTasks = tasks.filter(task => task.id !== idNumber);
-        
-            // localStorage.setItem('tasks', JSON.stringify(updatedTasks));
-            alert("Task deleted successfully!");
-            // setTasks(updatedTasks);
-            add(updatedTasks);
-            navigate('/'); 
-        }
-        else{
-            navigate(`/view/${idNumber}`); 
-        } 
-      };
 
     if (!selectedTask) {
         return <p className="no-tasks-message">No tasks found..</p>;
@@ -62,15 +46,14 @@ export const View: React.FC = () => {
         ) : (
         
         <div className='viewtask'>
-        
+            <div className="edit-buttons">
+                <button onClick={()=>navigate(`/edit/${id}`)} className="edit-button">Edit</button>
+            </div> 
             <h3 className="task-title"> <b>Title:</b> {selectedTask.title}</h3>
-            {/* <hr></hr><hr></hr> */}
             <p className="task-description"> <b>Description:</b> {selectedTask.description}</p>
             <p className="task-due-date"> <b>Due Date:</b> <span className='blink'>{selectedTask.dueDate}</span> </p>
             <p className="task-status"> <b>Status:</b> {selectedTask.status}</p>
             <div className="buttons">
-                <button onClick={()=>navigate(`/edit/${id}`)} className="button">Edit</button>
-                <button onClick={handleDelete} className="delete">Delete</button>
                 <button onClick={() => navigate('/')} className="button">Back</button>
             </div> 
            

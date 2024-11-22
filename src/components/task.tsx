@@ -1,5 +1,7 @@
 import { Link, useNavigate} from "react-router-dom";
 import './task.css';
+import React, { useContext } from "react";
+import { TaskContext } from "../context/context";
 
 type LayoutProps = {
     search: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -38,29 +40,37 @@ export function Layout({ search, filterchange , handleStartDateChange,handleEndD
         </>
     );
 }
-export function Task({ id, title, description, dueDate, status }: TaskProps) {
-    return (
-        <Link to={`/view/${id}`} className="task-link">
-   
-            <div className="task">
-                {/* <div className="task-header" >
-                    <Link to={`/view/${id}`} className="view-button">View</Link>
-                </div> */}
-                <h3 className="task-title">{title}</h3>
-                <p className="task-description"><strong>Description:</strong> {description}</p>
-                <p className="task-due-date"><strong>Due Date:</strong> {dueDate}</p>
-                <p className="task-status"><strong>Status:</strong> {status}</p>
-            </div>
-        </Link>
-    );
-}
 
 
 type TaskListProps = {
     tasks: TaskProps[];
 };
+type DeleteTaskProps = {
+    id: number;
+};
 
-export function TaskList({ tasks }: TaskListProps) {
+const DeleteTask: React.FC<DeleteTaskProps> = ({ id }) => {
+    const navigate = useNavigate();
+    const { add, tasks } = React.useContext(TaskContext);
+
+    const handleDelete = () => {
+        const confirmDelete = confirm("Are you sure?");
+        if (confirmDelete) {
+            const updatedTasks = tasks.filter((task) => task.id !== id);
+            add(updatedTasks); 
+            alert("Task deleted successfully!");
+            navigate("/");
+        }
+    };
+
+    return (
+        <button onClick={handleDelete} className="delete-task">
+            Delete
+        </button>
+    );
+};
+
+export const TaskList: React.FC<TaskListProps>=({ tasks })=> {
     const navigate = useNavigate();
     return (
         <div className="task-list-container1">
@@ -71,7 +81,7 @@ export function TaskList({ tasks }: TaskListProps) {
                         <th>Description</th>
                         <th>Due Date</th>
                         <th>Status</th>
-                        {/* <th>Actions</th> */}
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody className="task-list-container2">
@@ -83,9 +93,9 @@ export function TaskList({ tasks }: TaskListProps) {
                                 <td className="task-description1">{task.description}</td>
                                 <td className="task-due-date1">{task.dueDate}</td>
                                 <td className="task-status1">{task.status}</td>
-                                {/* <td className="task-actions1">
-                                    <Link to={`/view/${task.id}`} className="view-button">View</Link>
-                                </td> */}
+                                <td className="task-actions1"  onClick={(e) => e.stopPropagation()}>
+                                <DeleteTask id={task.id} />
+                                </td>
                             </tr>
                         ))
                     ) : (

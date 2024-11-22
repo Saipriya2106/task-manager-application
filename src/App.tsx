@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Task, Layout, TaskList } from './components/task';
+import { Layout, TaskList } from './components/task';
 import { View } from './components/view';
 import { Create } from './components/create';
 import { Edit } from './components/edit';
@@ -23,28 +23,6 @@ const dateformat = (year: number, month: number, day: number): string => {
 };
 
  const initialTasks: TaskDetails[] = 
-//     {
-//         id: 1,
-//         title: "Learn Javascript",
-//         description: "Gain Complete Knowledge on Javascript",
-//         dueDate: dateformat(2024, 10, 24),
-//         status: "Pending"
-//     },
-//     {
-//         id: 2,
-//         title: "Learn TypeScript",
-//         description: "Gain Complete Knowledge on TypeScript",
-//         dueDate: dateformat(2024, 10, 24),
-//         status: "Pending"
-//     },
-//     {
-//         id: 3,
-//         title: "Learn ReactJs",
-//         description: "Gain Complete Knowledge on ReactJs",
-//         dueDate: dateformat(2024, 10, 30),
-//         status: "Pending"
-//     }
-// ];
 [
     {
       "id": 1,
@@ -154,18 +132,8 @@ function App() {
     return (
         <Router>
             <Layout search={handleSearchChange} filterchange={handleFilterChange} handleStartDateChange={handleStartDateChange} handleEndDateChange={handleEndDateChange}  />
-            {/* <div className="task-list"> */}
               <TaskContext.Provider value={{tasks,setTasks, add}}>
                 <Routes>
-                    {/* <Route index element={
-                        filteredTasks.length > 0 ? (
-                            filteredTasks.map(todo => (
-                                <Task key={todo.id} id={todo.id} title={todo.title} description={todo.description} dueDate={todo.dueDate} status={todo.status} />
-                            ))
-                        ) : (
-                            <p className="no-tasks-message">No tasks found.</p>
-                        )
-                    } /> */}
                     <Route index element={
                         filteredTasks.length > 0 ? (
                             <TaskList  tasks={filteredTasks} />
@@ -178,7 +146,6 @@ function App() {
                     <Route path="/create" element={<Create/>} />
                 </Routes>
               </TaskContext.Provider>
-            {/* </div> */}
         </Router>
     );
 }
