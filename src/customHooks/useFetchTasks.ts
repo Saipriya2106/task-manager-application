@@ -7,6 +7,53 @@ type TaskDetails = {
     dueDate: string;
     status: string;
 };
+
+// const initialTasks: TaskDetails[] = 
+// [
+//     {
+//       "id": 1,
+//       "title": "Complete React Project",
+//       "description": "Finish building the React application for task management, including views for task creation, editing, and deletion.",
+//       "dueDate": "2024-11-20",
+//       "status": "In Progress"
+//     },
+//     {
+//       "id": 2,
+//       "title": "Write Unit Tests",
+//       "description": "Write unit tests for the task management features to ensure everything works correctly.",
+//       "dueDate": "2024-11-15",
+//       "status": "Pending"
+//     },
+//     {
+//       "id": 3,
+//       "title": "Refactor Code",
+//       "description": "Refactor the task management app to improve code readability and performance.",
+//       "dueDate": "2024-11-18",
+//       "status": "In Progress"
+//     },
+//     {
+//       "id": 4,
+//       "title": "Design Task UI",
+//       "description": "Create the design for the user interface of the task management app, including the task list, form, and buttons.",
+//       "dueDate": "2024-11-12",
+//       "status": "Completed"
+//     },
+//     {
+//       "id": 5,
+//       "title": "Fix Bugs in Task Form",
+//       "description": "Fix issues with the task form not properly submitting data or saving task information.",
+//       "dueDate": "2024-11-14",
+//       "status": "Pending"
+//     },
+//     {
+//       "id": 6,
+//       "title": "Deploy to Production",
+//       "description": "Deploy the task management application to the production server after testing and final bug fixes.",
+//       "dueDate": "2024-11-25",
+//       "status": "Pending"
+//     }
+//   ]
+  
 export function useFetchTasks(): [TaskDetails[], React.Dispatch<React.SetStateAction<TaskDetails[]>>] {
   const [Tasks, setTasks] = useState<TaskDetails[]>([]);
   useEffect(() => {

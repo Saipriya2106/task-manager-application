@@ -8,6 +8,7 @@ import { useTaskFilters } from './customHooks/useTaskFilters.ts';
 import './App.css';
 // import { useFetchTasks } from './customHooks/useFetchTasks.ts';
 import { TaskContext } from './context/context.tsx';
+import { useFetchTasks } from './customHooks/useFetchTasks.ts';
 
 type TaskDetails = {
     id: number;
@@ -22,51 +23,6 @@ const dateformat = (year: number, month: number, day: number): string => {
     return date.toISOString().split('T')[0];
 };
 
- const initialTasks: TaskDetails[] = 
-[
-    {
-      "id": 1,
-      "title": "Complete React Project",
-      "description": "Finish building the React application for task management, including views for task creation, editing, and deletion.",
-      "dueDate": "2024-11-20",
-      "status": "In Progress"
-    },
-    {
-      "id": 2,
-      "title": "Write Unit Tests",
-      "description": "Write unit tests for the task management features to ensure everything works correctly.",
-      "dueDate": "2024-11-15",
-      "status": "Pending"
-    },
-    {
-      "id": 3,
-      "title": "Refactor Code",
-      "description": "Refactor the task management app to improve code readability and performance.",
-      "dueDate": "2024-11-18",
-      "status": "In Progress"
-    },
-    {
-      "id": 4,
-      "title": "Design Task UI",
-      "description": "Create the design for the user interface of the task management app, including the task list, form, and buttons.",
-      "dueDate": "2024-11-12",
-      "status": "Completed"
-    },
-    {
-      "id": 5,
-      "title": "Fix Bugs in Task Form",
-      "description": "Fix issues with the task form not properly submitting data or saving task information.",
-      "dueDate": "2024-11-14",
-      "status": "Pending"
-    },
-    {
-      "id": 6,
-      "title": "Deploy to Production",
-      "description": "Deploy the task management application to the production server after testing and final bug fixes.",
-      "dueDate": "2024-11-25",
-      "status": "Pending"
-    }
-  ]
   
 type debounceType = {
   value:string,
@@ -89,10 +45,13 @@ function useDebounce({value , delay}:debounceType) {
 }
 
 function App() {
-    // const [tasks, setTasks] = useFetchTasks();
-    const [tasks, setTasks] = useState(initialTasks);
+    const [tasks, setTasks] = useFetchTasks();
+    // const [tasks, setTasks] = useState(initialTasks);
 
-    const add = (updatedtasks:TaskDetails[]) =>setTasks(updatedtasks);
+    const add = (updatedtasks:TaskDetails[]) => {
+      setTasks(updatedtasks)
+      localStorage.setItem('tasks', JSON.stringify(updatedtasks));
+    };
 
     // useEffect(() => {
     //     localStorage.setItem('tasks', JSON.stringify(initialTasks));
